@@ -46,4 +46,6 @@ const updateUser = inngest.createFunction(
     }
 )
 
+
+
 export const functions = [syncUserCreation, deleteUser, updateUser];
