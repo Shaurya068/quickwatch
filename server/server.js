@@ -1,6 +1,5 @@
 import express from 'express'
 import cors from 'cors'// to connect front end with backend
-import 'dotenv/config'
 import connectDb from './configs/db.js';
 import { clerkMiddleware } from '@clerk/express'
 import { Inngest } from "inngest";
