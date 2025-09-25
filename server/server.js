@@ -13,7 +13,12 @@ import userRouter from './routes/userRoutes.js';
 const app = express()
 const port = 3000;
 
-await connectDb();
+try {
+    await connectDb();
+} catch (error) {
+    console.error('Database connection failed:', error.message);
+    // In serverless, log and continue; app can still export
+}
 
 app.use(express.json())
 app.use(cors())
@@ -29,8 +34,4 @@ app.use('/api/booking', bookingRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
 
-
-
-app.listen(port, () => {
-    console.log('Starting port 3000')
-})
+export default app;
