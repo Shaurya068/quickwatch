@@ -34,4 +34,4 @@ app.use('/api/booking', bookingRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
 
-export default app;
+module.exports = app;
