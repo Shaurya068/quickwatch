@@ -10,7 +10,6 @@ import bookingRouter from './routes/bookingRoutes.js';
 import adminRouter from './routes/adminRoutes.js';
 import userRouter from './routes/userRoutes.js';
 const app = express()
-const port = 3000;
 
 try {
     await connectDb();
@@ -33,4 +32,4 @@ app.use('/api/booking', bookingRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
 
-module.exports = app;
+export default app;
