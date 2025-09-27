@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'// to connect front end with backend
+import 'dotenv/config'
 import connectDb from './configs/db.js';
 import { clerkMiddleware } from '@clerk/express'
 import { Inngest } from "inngest";
@@ -10,12 +11,12 @@ import bookingRouter from './routes/bookingRoutes.js';
 import adminRouter from './routes/adminRoutes.js';
 import userRouter from './routes/userRoutes.js';
 const app = express()
+const port = 3000;
 
 try {
     await connectDb();
 } catch (error) {
     console.error('Database connection failed:', error.message);
-    // In serverless, log and continue; app can still export
 }
 
 app.use(express.json())
@@ -31,5 +32,13 @@ app.use('/api/show', router)
 app.use('/api/booking', bookingRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
+
+
+
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log('Starting port 3000')
+    })
+}
 
 export default app;
