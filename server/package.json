@@ -11,6 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@clerk/express": "^1.7.4",
     "axios": "^1.10.0",

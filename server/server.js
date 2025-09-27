@@ -1,22 +1,22 @@
-const express = require('express')
-const cors = require('cors')
-const connectDb = require('./configs/db.js');
-const { clerkMiddleware } = require('@clerk/express')
-const { Inngest } = require("inngest");
-const { serve } = require("inngest/express");
-const { inngest, functions } = require("./inngest/index.js")
-const router = require('./routes/showRoutes.js');
-const bookingRouter = require('./routes/bookingRoutes.js');
-const adminRouter = require('./routes/adminRoutes.js');
-const userRouter = require('./routes/userRoutes.js');
-
+import express from 'express'
+import cors from 'cors'// to connect front end with backend
+import connectDb from './configs/db.js';
+import { clerkMiddleware } from '@clerk/express'
+import { Inngest } from "inngest";
+import { serve } from "inngest/express";
+import { inngest, functions } from "./inngest/index.js"
+import router from './routes/showRoutes.js';
+import bookingRouter from './routes/bookingRoutes.js';
+import adminRouter from './routes/adminRoutes.js';
+import userRouter from './routes/userRoutes.js';
 const app = express()
 
-connectDb().then(() => {
-    console.log('DB connected in serverless');
-}).catch((error) => {
+try {
+    await connectDb();
+} catch (error) {
     console.error('Database connection failed:', error.message);
-});
+    // In serverless, log and continue; app can still export
+}
 
 app.use(express.json())
 app.use(cors())
@@ -32,4 +32,4 @@ app.use('/api/booking', bookingRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
 
-module.exports = app;
+export default app;
