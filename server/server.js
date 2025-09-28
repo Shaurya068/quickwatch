@@ -19,6 +19,7 @@ try {
     console.error('Database connection failed:', error.message);
 }
 
+
 app.use(express.json())
 app.use(cors())
 app.use(clerkMiddleware())
