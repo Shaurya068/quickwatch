@@ -10,10 +10,7 @@ const connectDb = async () => {
     if (cached.conn) return cached.conn;
 
     if (!cached.promise) {
-        cached.promise = mongoose.connect(process.env.MONGO_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).then(m => m);
+        cached.promise = mongoose.connect(process.env.MONGO_URL).then(m => m);
     }
 
     try {

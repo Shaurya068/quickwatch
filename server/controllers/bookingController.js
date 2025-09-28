@@ -2,7 +2,7 @@
 
 import Booking from "../models/Bookings.js";
 import Show from "../models/Show.js"
-import Movie from "../models/Movie.js"
+import Movie from "../models/movie.js"
 import stripe from 'stripe'
 
 const checkSeatsAvailability = async (showId, selectedSeats) => {
