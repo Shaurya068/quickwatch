@@ -1,6 +1,7 @@
 import Booking from "../models/Bookings.js"
 import Show from "../models/Show.js"
 import User from "../models/User.js"
+import Movie from "../models/Movie.js"
 import { clerkClient } from "@clerk/express"
 
 export const isAdmin = async (req, res) => {
