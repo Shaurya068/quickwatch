@@ -1,6 +1,6 @@
-import Booking from "../models/Bookings.js"
-import Show from "../models/Show.js"
-import User from "../models/User.js"
+import Booking from "../models/bookings.js"
+import Show from "../models/show.js"
+import User from "../models/user.js"
 import Movie from "../models/movie.js"
 import { clerkClient } from "@clerk/express"
 

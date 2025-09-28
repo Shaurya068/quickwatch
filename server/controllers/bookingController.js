@@ -1,7 +1,7 @@
 //function to check available seats
 
-import Booking from "../models/Bookings.js";
-import Show from "../models/Show.js"
+import Booking from "../models/bookings.js";
+import Show from "../models/show.js"
 import Movie from "../models/movie.js"
 import stripe from 'stripe'
 
