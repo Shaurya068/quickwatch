@@ -1,6 +1,6 @@
 import { clerkClient } from "@clerk/express"
 import Booking from "../models/Bookings.js"
-import Movie from "../models/movie.js"
+import Movie from "../models/Movie.js"
 
 //api controller to get user
 export const getUserBookings = async (req, res) => {
