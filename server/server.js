@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { json } from 'express'
 import cors from 'cors'// to connect front end with backend
 import 'dotenv/config'
 import connectDb from './configs/db.js';
@@ -18,6 +18,8 @@ try {
 } catch (error) {
     console.error('Database connection failed:', error.message);
 }
+//stripe webhooks route
+app.use('/api/stripe', express.raw({ type: '/application/json' }), json)
 
 app.use(express.json())
 app.use(cors())
