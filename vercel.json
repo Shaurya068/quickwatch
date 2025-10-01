@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "npm --prefix client ci && npm --prefix client run build",
+  "outputDirectory": "client/dist",
   "functions": {
     "server/server.js": {
       "includeFiles": "client/dist/**"
