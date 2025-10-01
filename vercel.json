@@ -1,8 +1,8 @@
 {
   "version": 2,
   "installCommand": "npm ci && npm --prefix client ci",
-  "buildCommand": "npm --prefix client run build",
-  "outputDirectory": "client/dist",
+  "buildCommand": "npm --prefix client run build && rm -rf public && cp -r client/dist public",
+  "outputDirectory": "public",
   "builds": [
     {
       "src": "server/server.js",
