@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "npm --prefix client ci && npm --prefix client run build",
-  "outputDirectory": "client/dist",
+  "installCommand": "npm ci && npm --prefix client ci",
+  "buildCommand": "npm --prefix client run build",
   "functions": {
     "server/server.js": {
       "includeFiles": "client/dist/**"
@@ -11,7 +11,8 @@
     { "src": "server/server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "server/server.js" }
+    { "src": "/api/(.*)", "dest": "server/server.js" },
+    { "src": "/(.*)", "dest": "client/dist/index.html" }
   ]
 }
 
