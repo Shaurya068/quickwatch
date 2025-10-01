@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "functions": {
+    "server/server.js": {
+      "includeFiles": "client/dist/**"
+    }
+  },
   "builds": [
     { "src": "server/server.js", "use": "@vercel/node" }
   ],
