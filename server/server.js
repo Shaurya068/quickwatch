@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import connectDb from './configs/db.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { clerkMiddleware } from '@clerk/express';
 import { serve } from 'inngest/express';
 import { inngest, functions } from './inngest/index.js';
@@ -45,8 +47,14 @@ app.post(
 // ---- JSON parser for other routes ---- //
 app.use(express.json());
 
+// ---- Static client (serve built SPA) ---- //
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
+app.use(express.static(clientDistPath));
+
 // ---- Health check ---- //
-app.get('/', (req, res) => res.send('Server is live'));
+app.get('/api', (req, res) => res.send('Server is live'));
 
 // ---- Inngest ---- //
 app.use('/api/inngest', serve({ client: inngest, functions }));
@@ -56,6 +64,12 @@ app.use('/api/show', showRouter);
 app.use('/api/booking', bookingRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/user', userRouter);
+
+// ---- SPA Fallback for non-API routes ---- //
+app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+});
 
 // ---- Global Error Handler ---- //
 app.use((err, req, res, next) => {
