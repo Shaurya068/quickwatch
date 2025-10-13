@@ -1,8 +1,7 @@
 {
   "version": 2,
-  "installCommand": "npm ci && npm --prefix client ci",
-  "buildCommand": "npm --prefix client run build && rm -rf public && cp -r client/dist public",
-  "outputDirectory": "public",
+  "installCommand": "npm ci",
+  "buildCommand": "rm -rf public && cp -r client/dist public",
   "builds": [
     {
       "src": "server/server.js",
@@ -15,6 +14,9 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "server/server.js" }
+    {
+      "src": "/(.*)",
+      "dest": "server/server.js"
+    }
   ]
 }
